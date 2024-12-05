@@ -34,6 +34,10 @@
 # remove dependencies
 rm(list = ls())
 
+# Things to look at
+# She is doing this following the example code that the CES publishes, but the data is quarterly and she is doing it annually using the CES weights
+# 
+
 ###########
 # packages
 library(data.table)

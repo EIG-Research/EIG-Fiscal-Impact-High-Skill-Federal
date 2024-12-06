@@ -4,7 +4,7 @@ This document outlines the data and methodology used for EIG’s H-1B federal fi
 
 ## Data
 <ol>
-<li> Office of Budget Management <a href=“https://www.whitehouse.gov/omb/budget/historical-tables/”>Link</a>
+<li> Office of Budget Management [Link](https://www.whitehouse.gov/omb/budget/historical-tables/)
   <ol> 
     <li> For federal expenditures: Table 3.2 - OUTLAYS BY FUNCTION AND SUBFUNCTION:  1962 - 2029 </li>
     <li> For customs duties: Table 2.5 - COMPOSITION OF “OTHER RECEIPTS”: 1940-2029 </li>

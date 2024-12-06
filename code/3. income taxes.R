@@ -1,4 +1,4 @@
-# LAST UPDATED 12/05/2024 BY SARAH ECKHARDT
+# LAST UPDATED 12/06/2024 BY SARAH ECKHARDT
 
 # DESCRIPTION:
   # 1. take in constructed panel data from 2. construct panel.R
@@ -129,6 +129,8 @@ rm(brackets, deductions)
 #########################
 # construct income taxes
 
+# children | married
+nchild = 1.48
 
   # 1. apply standard deduction
     income_taxes = left_join(scenarios_panel, deductions_panel,
@@ -158,7 +160,7 @@ rm(brackets, deductions)
     # 3. apply child tax credit to scenarios in which there is a child.
         mutate(income_tax = case_when(
           child == 0 ~ income_tax,
-          child == 1 ~ income_tax - 2000
+          child == 1 ~ income_tax - 2000*nchild
         )) %>% select(-c(child))
 
     

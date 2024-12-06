@@ -4,20 +4,23 @@ This document outlines the data and methodology used for EIG’s H-1B federal fi
 
 ## Data
 1. Office of Budget Management [Link](https://www.whitehouse.gov/omb/budget/historical-tables/)
+   
     a.  For federal expenditures: Table 3.2 - OUTLAYS BY FUNCTION AND SUBFUNCTION:  1962 - 2029
+   
     b.  For customs duties: Table 2.5 - COMPOSITION OF “OTHER RECEIPTS”: 1940-2029
- 2. American Consumer Survey 2021 5-year file [Link](https://usa.ipums.org/usa/index.shtml) for pr(married) and E(children | married). Variable list provided in “Data/ACS/IPUMS ACS download instructions .png”
- 3. USCIS fiscal years 2019 and 2023 Annual Report to Congress [2019](https://www.uscis.gov/sites/default/files/document/reports/Characteristics_of_Specialty_Occupation_Workers_H-1B_Fiscal_Year_2019.pdf) and [2023](https://www.uscis.gov/sites/default/files/document/reports/OLA_Signed_H-1B_Characteristics_Congressional_Report_FY2023.pdf) for mean and median income of H-1B workers.
- 4. Department of Labor Prevailing Wage Test data for Q1-4 2023, for the 95th percentile H-1B income estimate [Link](https://www.dol.gov/agencies/eta/foreign-labor/wages)
- 5. Brandon, Ike, and M. Kevin McGee "Repealing H-4 Visa Work Authorization: A Cost-Benefit Analysis." Available at SSRN 3349786 (2019) [Link](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3349786) for H-4 incomes in 2019
- 6. Tax Foundation 2023 Tax Brackets [Link](https://taxfoundation.org/data/all/federal/2023-tax-brackets/) for income tax estimates
- 7. Consumer Expenditure Survey from the BLS Public Use Microdata (PUMD) [Link](https://www.bls.gov/cex/pumd.htm) to estimate excise taxes
- 8. USCIS I-765 Work Authorization Reports [Link](https://www.uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data) for working spouse probabilities
- 9. Stock of H-1Bs [Link](https://www.uscis.gov/sites/default/files/document/reports/USCIS%20H-1B%20Authorized%20to%20Work%20Report.pdf)
- 10. CBO Economic Projections, June 2024 [Link](https://www.cbo.gov/data/budget-economic-data)
- 11. CBO Tax Parameters, June 2024 [Link](https://www.cbo.gov/data/budget-economic-data)
- 12. CBO Demographic Projections, January 2023 [Link](https://www.cbo.gov/data/budget-economic-data)
- 13. Census population estimates 2023 [Link](https://www.census.gov/data/datasets/time-series/demo/popest/2020s-national-total.html)
+   
+ 3. American Consumer Survey 2021 5-year file [Link](https://usa.ipums.org/usa/index.shtml) for pr(married) and E(children | married). Variable list provided in “Data/ACS/IPUMS ACS download instructions .png”
+ 4. USCIS fiscal years 2019 and 2023 Annual Report to Congress [2019](https://www.uscis.gov/sites/default/files/document/reports/Characteristics_of_Specialty_Occupation_Workers_H-1B_Fiscal_Year_2019.pdf) and [2023](https://www.uscis.gov/sites/default/files/document/reports/OLA_Signed_H-1B_Characteristics_Congressional_Report_FY2023.pdf) for mean and median income of H-1B workers.
+ 5. Department of Labor Prevailing Wage Test data for Q1-4 2023, for the 95th percentile H-1B income estimate [Link](https://www.dol.gov/agencies/eta/foreign-labor/wages)
+ 6. Brandon, Ike, and M. Kevin McGee "Repealing H-4 Visa Work Authorization: A Cost-Benefit Analysis." Available at SSRN 3349786 (2019) [Link](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3349786) for H-4 incomes in 2019
+ 7. Tax Foundation 2023 Tax Brackets [Link](https://taxfoundation.org/data/all/federal/2023-tax-brackets/) for income tax estimates
+ 8. Consumer Expenditure Survey from the BLS Public Use Microdata (PUMD) [Link](https://www.bls.gov/cex/pumd.htm) to estimate excise taxes
+ 9. USCIS I-765 Work Authorization Reports [Link](https://www.uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data) for working spouse probabilities
+ 10. Stock of H-1Bs [Link](https://www.uscis.gov/sites/default/files/document/reports/USCIS%20H-1B%20Authorized%20to%20Work%20Report.pdf)
+ 11. CBO Economic Projections, June 2024 [Link](https://www.cbo.gov/data/budget-economic-data)
+ 12. CBO Tax Parameters, June 2024 [Link](https://www.cbo.gov/data/budget-economic-data)
+ 13. CBO Demographic Projections, January 2023 [Link](https://www.cbo.gov/data/budget-economic-data)
+ 14. Census population estimates 2023 [Link](https://www.census.gov/data/datasets/time-series/demo/popest/2020s-national-total.html)
 
 
 ## Scenario Probabilities

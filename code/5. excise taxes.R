@@ -1,4 +1,4 @@
-# LAST UPDATED 12/05/2024 BY SARAH ECKHARDT
+# LAST UPDATED 12/06/2024 BY SARAH ECKHARDT
 
 # DESCRIPTION:
 # 1. estimate excise taxes
@@ -191,7 +191,7 @@ annual_excise_expend <- left_join(fmli_memi, mtbi, by = "newid") %>%
                 ~ replace(., is.na(.), 0)))
 
 # clean up
-rm(fmli, mtbi, fmli_memi, memi)
+#rm(fmli, mtbi, fmli_memi, memi)
 
 
 
@@ -267,11 +267,25 @@ annual_excise_expend = annual_excise_expend %>%
          n_sibling = 1*(cu_code==6),
          n_parents = 1*(cu_code==7),
          n_other_related = 1*(cu_code==8),
-         n_unrelated = 1*(cu_code==9)) %>%
+         n_unrelated = 1*(cu_code==9),
+         ) %>%
   group_by(newid) %>%
   mutate(across(contains("n_"),
-                ~sum(.)))
-
+                ~sum(.))) %>%
+  
+  mutate(categorization = case_when(
+    members==1 ~ "single filer",
+    n_spouse==1 & members==2 ~ "joint filer no kids",
+    n_spouse ==1 & (n_child >0 & n_child < 3) &
+      n_grandchild==0 & 
+      n_inlaws ==0 & 
+      n_sibling==0 & 
+      n_parents==0 & 
+      n_other_related==0 & 
+      n_unrelated==0 ~ "joint filer kids",
+    TRUE ~ "other"
+  ))
+         
 
 ###########################
 # weight the excise taxes #
@@ -288,36 +302,43 @@ BEA_2023_excise_totals = readxl::read_excel(paste(path_bea, "Table.xlsx", sep="/
   select(`...2`, `2023`) %>% mutate(`2023` = as.numeric(`2023`))
 
 BEA_2023_excise_totals = BEA_2023_excise_totals$`2023`[1]
-BEA_2023_excise_totals
 
+# apply 40% of total to quintiles 4 & 5
+BEA_2023_excise_applied = BEA_2023_excise_totals*0.40
 
 #####################################
 # BASED ON INCOME OF REFERENCE PERSON
 
-individual_excise_wts = annual_excise_expend %>%   filter(cu_code == 1) %>%
+# are H1bs in the right range?
+annual_excise_expend %>%   filter(cu_code == 1) %>%
   
   # exclude individuals not reporting any wage/salary income
   filter(salaryx > 0) %>% ungroup() %>%
-  
   
   # construct salary quntiles
   mutate(
     salary_quintile = hutils::weighted_ntile(salaryx, 5, weights = popwt)) %>%
   
+  filter(salary_quintile >=4) %>%
   ungroup() %>%
+  summarise(median_quintile_salary = median(salaryx, na.rm = TRUE),
+            mean_quintile_salary = mean(salaryx, na.rm = TRUE))
+
+
+
+excise_taxes_applied = annual_excise_expend %>% filter(cu_code == 1) %>%
+  filter(salaryx > 0) %>% ungroup() %>%
   
-  # generate maximum income for proper quintile assignment 
-  # (do we want quintiles, or more granular categories?)
+  mutate(
+    salary_quintile = hutils::weighted_ntile(salaryx, 5, weights = popwt)) %>%
   
-  group_by(salary_quintile) %>%
-  mutate(max_quintile_salary = max(salaryx, na.rm = TRUE),
-         mean_quintile_salary = mean(salaryx, na.rm = TRUE)) %>%
+  filter(salary_quintile >=4) %>%
   
-  # 1. mean expenditure, and population by group
-  # based on household expenditure distributed equally to individuals.
+  mutate(mean_quintile_salary = mean(fsalaryx, na.rm = TRUE)) %>% # base rate on total household salary (hh head + spouse)
   
-  group_by(salary_quintile, education, max_quintile_salary, mean_quintile_salary) %>%
-  summarise(mean_excise_expend = sum(per_member_expenditure * finlwt21)/ sum(popwt),
+  ungroup() %>%
+  group_by(categorization, mean_quintile_salary) %>%
+  summarise(mean_excise_expend = sum(total_expend * finlwt21)/ sum(popwt),
             pop = sum(popwt)) %>%
   
   # 2. compute approximate total spending by group
@@ -331,60 +352,33 @@ individual_excise_wts = annual_excise_expend %>%   filter(cu_code == 1) %>%
   
   # 4. apply weights to BEA totals, and perform per capita transformations
   # this gives us excise tax revenues apportioned by quintile - education groups,
-  # based on distribution of expenditure acrosss groups,
+  # based on distribution of expenditure across groups,
   # with equal expenditure across HH members (an issue with larger families with one income earner)
   
-  mutate(excise_rev = BEA_2023_excise_totals * 1000000000 * group_wt / pop)
+  mutate(excise_revenue = BEA_2023_excise_applied * 1000000000 * group_wt / pop) %>%
+  
+  mutate(excise_rate = excise_revenue/mean_quintile_salary)
 
+excise_taxes_applied
+####################
+# apply to h1bs.
+# as a % of income
+# grows with income growth
 
-
-##################
-# PREPARE TABLES
-
-results_individual = individual_excise_wts %>%
-  mutate(education_labs = case_when(
-    education == 1 ~ "<HS",
-    education == 2 ~ "HS",
-    education == 3 ~ "SomeCol",
-    education == 4 ~ "BA+"
-  ),
-  Quintile = paste("Quintile", salary_quintile)) %>%
-  select(Quintile, max_quintile_salary, mean_quintile_salary, education_labs, excise_rev) %>%
-  mutate(excise_rate = excise_rev/mean_quintile_salary) %>%
-  select(-c(excise_rev)) %>%
-  pivot_wider(names_from = education_labs,
-              values_from = excise_rate,
-              id_cols = c(Quintile, max_quintile_salary, mean_quintile_salary))
-
-results_individual
-
-##########################################################################################
-# approach for now -- applying this rate to income to get nominal increase in excise taxes
-
-# based on bracket in 2023
-  # h1bs are in quintile 5
-  # spouses are in quintile 4
-
-
-spouse_rate = results_individual %>%
-  filter(`Quintile` == "Quintile 4")
-spouse_rate = spouse_rate$`BA+`[1]
-
-h1b_rate = results_individual %>%
-  filter(`Quintile` == "Quintile 5")
-h1b_rate = h1b_rate$`BA+`[1]
-
+single = excise_taxes_applied[excise_taxes_applied$categorization=="single filer",]$excise_rate
+joint_no_kids = excise_taxes_applied[excise_taxes_applied$categorization=="joint filer kids",]$excise_rate
+joint_kids = excise_taxes_applied[excise_taxes_applied$categorization=="joint filer no kids",]$excise_rate
 
 scenarios_panel = read_excel(
   paste(output_path, "h1b_scenarios_panel_inc_payroll_tax.xlsx", sep="/")) %>%
-  mutate(excise_tax_rate_h1b = h1b_rate,
-         excise_tax_rate_spouse = spouse_rate,
-         excise_tax_h1b = excise_tax_rate_h1b*income_h1b,
-         excise_tax_spouse = excise_tax_rate_spouse*income_spouse,
-         total_excise_tax_contribution = excise_tax_h1b+excise_tax_spouse) %>%
-  
-  select(-c(contains("excise_tax_rate")))
-
+  mutate(excise_taxes = case_when(
+    scenario == 1 ~ (income_h1b+income_spouse)*single,
+    scenario == 2 ~ (income_h1b+income_spouse)*joint_kids,
+    scenario == 3 ~ (income_h1b+income_spouse)*joint_kids,
+    scenario == 4 ~ (income_h1b+income_spouse)*joint_no_kids,
+    scenario == 5 ~ (income_h1b+income_spouse)*joint_no_kids,
+  ))
 
 # export dataset
 write.xlsx(scenarios_panel, paste(output_path, "h1b_scenarios_panel_inc_payroll_excise_tax.xlsx",sep="/"))
+

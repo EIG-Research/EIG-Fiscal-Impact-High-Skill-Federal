@@ -1,4 +1,4 @@
-# LAST UPDATED 12/05/2024 BY SARAH ECKHARDT
+# LAST UPDATED 12/06/2024 BY SARAH ECKHARDT
 
 # DESCRIPTION:
   # 1. Take in constructed scenarios
@@ -41,8 +41,10 @@ scenarios = read_excel(
 income_median_h1b = 118000
 income_mean_h1b = 130000
 
-  # see LCA 9th percentile H1B incomes.R
-income_95th_h1b = 217625
+  # see LCA 95th percentile H1B incomes.R
+
+income_95th_h1b = as.numeric(names(read_excel(paste(output_path,
+                                   "h1b_income_95th.xlsx", sep="/"))))
 
   # spouse incomes
     # 2019 estimate from Brannon, Ike, and M. Kevin McGee. "Repealing H-4 Visa Work Authorization: A Cost-Benefit Analysis." Available at SSRN 3349786 (2019)

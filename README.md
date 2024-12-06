@@ -27,15 +27,15 @@ This document outlines the data and methodology used for EIG’s H-1B federal fi
 
 Assuming that there are no single-parent households for simplicity, and that children are distributed equally among working and non-working H-1B spouses, we construct five scenarios to estimate household-level impacts of issuing a single H-1B visa. We estimate each scenario separately for the mean, median, and 95th percentile H-1B earner.
 
-  &nbsp;&nbsp;&nbsp;<b>Scenario 1:</b> unmarried H-1B worker, no children
+  &nbsp;&nbsp;&nbsp;&nbsp;<b>Scenario 1:</b> unmarried H-1B worker, no children
   
-  &nbsp;&nbsp;&nbsp;<b>Scenario 2:</b> married H-1B worker, working spouse, with children
+  &nbsp;&nbsp;&nbsp;&nbsp;<b>Scenario 2:</b> married H-1B worker, working spouse, with children
   
-  &nbsp;&nbsp;&nbsp;<b>Scenario 3:</b> married H-1B worker, nonworking spouse, with children
+  &nbsp;&nbsp;&nbsp;&nbsp;<b>Scenario 3:</b> married H-1B worker, nonworking spouse, with children
   
-  &nbsp;&nbsp;&nbsp;<b>Scenario 4:</b> married H-1B worker, working spouse, without children
+  &nbsp;&nbsp;&nbsp;&nbsp;<b>Scenario 4:</b> married H-1B worker, working spouse, without children
   
-  &nbsp;&nbsp;&nbsp;<b>Scenario 5:</b> married H-1B worker, nonworking spouse, without children
+  &nbsp;&nbsp;&nbsp;&nbsp;<b>Scenario 5:</b> married H-1B worker, nonworking spouse, without children
 
 
 The probability that an H-1B worker is married, and the number of children conditional on being married, is estimated using an identified sample of probable H-1B workers from the ACS.

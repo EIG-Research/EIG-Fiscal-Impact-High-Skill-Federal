@@ -365,10 +365,20 @@ results_individual
   # h1bs are in quintile 5
   # spouses are in quintile 4
 
+
+spouse_rate = results_individual %>%
+  filter(`Quintile` == "Quintile 4")
+spouse_rate = spouse_rate$`BA+`[1]
+
+h1b_rate = results_individual %>%
+  filter(`Quintile` == "Quintile 5")
+h1b_rate = h1b_rate$`BA+`[1]
+
+
 scenarios_panel = read_excel(
   paste(output_path, "h1b_scenarios_panel_inc_payroll_tax.xlsx", sep="/")) %>%
-  mutate(excise_tax_rate_h1b = 0.0101,
-         excise_tax_rate_spouse = 0.0186,
+  mutate(excise_tax_rate_h1b = h1b_rate,
+         excise_tax_rate_spouse = spouse_rate,
          excise_tax_h1b = excise_tax_rate_h1b*income_h1b,
          excise_tax_spouse = excise_tax_rate_spouse*income_spouse,
          total_excise_tax_contribution = excise_tax_h1b+excise_tax_spouse) %>%

@@ -148,8 +148,8 @@ nchild = 1.48
         ungroup() %>% group_by(Year, scenario, income_type) %>%
         
         mutate(bracket_income_taxed = case_when(
-          (taxable_income > `minimum income`) & (taxable_income > lead(`minimum income`)) ~  lead(`minimum income`) - `minimum income`, # pays full bracket
-          (taxable_income < lead(`minimum income`)) & (taxable_income > `minimum income`) ~ taxable_income - `minimum income`,          # maximum applicable bracket
+          (taxable_income > `minimum income`) & (taxable_income > lead(`minimum income`)) ~  (lead(`minimum income`) - `minimum income`)*rate, # pays full bracket
+          (taxable_income < lead(`minimum income`)) & (taxable_income > `minimum income`) ~ (taxable_income - `minimum income`)*rate,          # maximum applicable bracket
           (taxable_income < lead(`minimum income`)) & (taxable_income < `minimum income`) ~ 0,                                          # inapplicable bracket
           TRUE ~ 0)) %>%                                                                                                                # last bracket
           

@@ -1,4 +1,4 @@
-# LAST UPDATED 12/05/2024 BY SARAH ECKHARDT
+# LAST UPDATED 12/06/2024 BY SARAH ECKHARDT
 
 # DESCRIPTION:
   # 1. read in expenditure data from OBM
@@ -54,7 +54,14 @@ expenditures_methods= read_excel(
       `Scenario 5` == "excluded" ~ 0,
       `Scenario 5` == "average" ~ 1,
       `Scenario 5` == "average (X2)" ~ 2)) %>%
-  select(-c(contains("Scenario")))
+  select(-c(contains("Scenario"))) %>%
+  
+  # adjust elementary education spending to the # of children in the household
+  
+  mutate(`2` = ifelse(`Function and Subfunction`=="501 Elementary, secondary, and vocational education",
+                      `2`*1.48, `2`),
+         `3` = ifelse(`Function and Subfunction`=="501 Elementary, secondary, and vocational education",
+                      `3`*1.48, `3`))
 
 
 # read in expenditures data

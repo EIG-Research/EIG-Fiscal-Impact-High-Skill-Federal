@@ -1,4 +1,4 @@
-# Last updated November 22nd, 2024, by Sarah Eckhardt
+# LAST UPDATED 12/06/2024 BY SARAH ECKHARDT
 
 # Description:
 
@@ -153,6 +153,12 @@ count(LCA2023_all)  - 386318
 
 quantile(LCA2023_all$ADJUSTED_PAY, 
          c(0.25, 0.5, 0.75, 0.90, 0.95, 0.99), na.rm=TRUE)
+
+h1b_95th = quantile(LCA2023_all$ADJUSTED_PAY, 
+                    c(0.25, 0.5, 0.75, 0.90, 0.95, 0.99), na.rm=TRUE)[5]
+
+
+openxlsx::write.xlsx(h1b_95th, paste(output_path, "h1b_income_95th.xlsx", sep="/"))
 
 # 95th - $217,625
 # 99th - $300,000

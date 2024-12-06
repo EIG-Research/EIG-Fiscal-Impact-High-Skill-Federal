@@ -1,4 +1,4 @@
-# LAST UPDATED 12/05/2024 BY SARAH ECKHARDT
+# LAST UPDATED 12/06/2024 BY SARAH ECKHARDT
 
 # DESCRIPTION:
   # 1. reads in panel data with federal expenditures and federal tax revenues
@@ -26,7 +26,7 @@ scenarios_panel = read_excel(paste(
   "scenarios_taxes_expenditures_combined.xlsx",
   sep="/")) %>%
   
-  mutate(taxes_individual = income_tax + total_payroll_taxes_employee + total_excise_tax_contribution + customs_duties,
+  mutate(taxes_individual = income_tax + total_payroll_taxes_employee + excise_taxes + customs_duties,
          taxes_employer = total_payroll_taxes_employer,
          taxes_total = taxes_individual + taxes_employer,
          
@@ -84,10 +84,7 @@ write.xlsx(scenarios_panel_2023,
            paste(output_path, "RESULTS_2023_all_scen.xlsx", sep="/"))
 
 write.xlsx(scenarios_panel_all_years_collapsed, 
-           paste(output_path, "RESULTS_2023_probabilistic.xlsx", sep="/"))
-
-write.xlsx(scenarios_panel_2023_collapsed, 
            paste(output_path, "RESULTS_all_years_probabilistic.xlsx", sep="/"))
 
-
-
+write.xlsx(scenarios_panel_2023_collapsed, 
+           paste(output_path, "RESULTS_2023_probabilistic.xlsx", sep="/"))

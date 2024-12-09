@@ -1,4 +1,4 @@
-# LAST UPDATED 12/06/2024 BY SARAH ECKHARDT
+# LAST UPDATED 12/09/2024 BY SARAH ECKHARDT
 
 # DESCRIPTION:
   # 1. reads in panel data with federal expenditures and federal tax revenues
@@ -12,6 +12,7 @@ rm(list = ls())
 library(dplyr)
 library(readxl)
 library(openxlsx)
+library(tidyr)
 
 # set project directories
 user_path = "/Users/sarah/Library/CloudStorage/GoogleDrive-sarah@eig.org/My Drive"
@@ -88,3 +89,74 @@ write.xlsx(scenarios_panel_all_years_collapsed,
 
 write.xlsx(scenarios_panel_2023_collapsed, 
            paste(output_path, "RESULTS_2023_probabilistic.xlsx", sep="/"))
+
+
+
+########################################
+# estimate annual mean net tax contribution each year
+#translate to total revenues
+
+# 2 sec
+# assuming 100,000 and 500,000 ne
+
+annual_100k = 100000
+annual_500k = 500000
+
+retention_rate_green_card = 0.45
+
+cumulative_estimate = scenarios_panel_all_years_collapsed %>%
+  ungroup() %>%
+  filter(income_type == "mean") %>%
+  mutate(
+    
+    # gained
+    new_h1bs_100k = annual_100k,
+    
+    new_h1bs_500k = annual_500k,
+    
+    # lost
+    lost_h1bs_100k = case_when(
+      Year < 2029 ~ 0,
+      Year >=2029 ~ annual_100k - (annual_100k*retention_rate_green_card)
+    ),
+    
+    lost_h1bs_500k = case_when(
+      Year < 2029 ~ 0,
+      Year >=2029 ~ annual_500k - (annual_500k*retention_rate_green_card)
+    ),
+    
+    # cumulative
+      adjusted_h1bs_annnual_100k =  new_h1bs_100k - lost_h1bs_100k,
+      
+      adjusted_h1bs_annnual_500k =  new_h1bs_500k - lost_h1bs_500k,
+    
+      adjusted_h1bs_100k = cumsum(adjusted_h1bs_annnual_100k),
+    
+      adjusted_h1bs_500k = cumsum(adjusted_h1bs_annnual_500k),
+    
+    # adjust revenues, expenditures, total impact to be a cumulative estimate
+    total_revs_100k = taxes_total*adjusted_h1bs_100k,
+    total_expend_100k = fed_expenditures*adjusted_h1bs_100k,
+    total_impact_100k = fiscal_impact*adjusted_h1bs_100k,
+    
+    total_revs_500k = taxes_total*adjusted_h1bs_500k,
+    total_expend_500k = fed_expenditures*adjusted_h1bs_500k,
+    total_impact_500k = fiscal_impact*adjusted_h1bs_500k)
+
+
+collapsed_estimate = 
+cumulative_estimate %>%
+  summarise(`total revenues_100k` = sum(total_revs_100k),
+            `total expenditures_100k` = sum(total_expend_100k),
+            `total impact_100k`= sum(total_impact_100k),
+            `total impact_100k`= sum(total_impact_100k),
+            `total revenues_500k`= sum(total_revs_500k),
+            `total expenditures_500k`= sum(total_expend_500k),
+            `total impact_500k`= sum(total_impact_500k)) %>%
+  pivot_longer(cols = c(contains("total"))) %>%
+  mutate(`annual h1b inflow` = substr(name, nchar(name) - 3, nchar(name)),
+         variable = substr(name, 1, nchar(name) - 5)) %>% select(variable, annual_h1b_inflow, value) %>%
+  pivot_wider(names_from = variable,
+              values_from = value)
+
+write.xlsx(collapsed_estimate, paste(output_path, "cumulative impact.xlsx", sep="/"))

@@ -45,9 +45,9 @@ The probability that a spouse is working is estimated using USCIS annual reports
 
 ## Income
 
-H-1B mean and median income estimates come from the USCIS’s 2023 Fiscal Year Report to Congress (linked above). The 95th and 99th percentile income comes from LCA prevailing wage data, taking the average of the minimum and maximum rate of pay provided by employer sponsors. The 95th and 99th percentiles are not published by the USCIS.
+H-1B mean and median income estimates come from the USCIS’s 2023 Fiscal Year Report to Congress. The 95th percentile income comes from LCA prevailing wage data, taking the average of the minimum and maximum rate of pay provided by employer sponsors. The 95th percentile is not published by the USCIS.
 
-The reason for not using the LCA files for the mean and median incomes are:
+The 95th percentile estimate should be taken with a degree of caution. This is because in the LCA:
 <ol>
   <li>H-1B visas don't line up 1:1 with LCA filings</li>
   <li>Multiple H-1Bs can be approved on one LCA</li>

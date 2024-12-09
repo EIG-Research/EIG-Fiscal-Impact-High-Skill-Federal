@@ -38,7 +38,7 @@ Assuming that there are no single-parent households for simplicity, and that chi
   &nbsp;&nbsp;&nbsp;&nbsp;<b>Scenario 5:</b> married H-1B worker, nonworking spouse, without children
 
 
-The probability that an H-1B worker is married, and the number of children conditional on being married, is estimated using an identified sample of probable H-1B workers from the ACS.
+The probability that an H-1B worker is married, and the number of children conditional on being married, is estimated using an identified sample of probable H-1B workers from the ACS (see code/h1b demography.do).
 
 The probability that a spouse is working is estimated using USCIS annual reports of I-765 Work Authorization applications. We take the midpoint of total authorizations in 2022, and authorizations issued between 2019-2022 (assuming that an EAD is held for 3 years) to approximate the number of EADs issued. The ratio between this estimate and the estimated number of H-1Bs in the U.S. as of 2019, is taken to be the share of H-1Bs with an EAD authorized spouse. This is multiplied by the share of H-4 visa holders with an H-1B spouse that are employed, provided by Brandon et al. (2019). This is multiplied by the probability that an H-1B is married to obtain the final spousal working probability.
 

@@ -45,19 +45,17 @@ The probability that a spouse is working is estimated using USCIS annual reports
 
 ## Income
 
-H-1B mean and median income estimates come from the USCIS’s 2023 Fiscal Year Report to Congress. The 95th percentile income comes from LCA prevailing wage data, taking the average of the minimum and maximum rate of pay provided by employer sponsors. The 95th percentile is not published by the USCIS.
+H-1B mean and median income estimates come from the USCIS’s 2023 Fiscal Year Report to Congress. The 95th percentile income comes from Labor Condition Applications (LCA) prevailing wage data, taking the average of the minimum and maximum rate of pay provided by employer sponsors. The 95th percentile is not published by the USCIS.
 
-The 95th percentile estimate should be taken with a degree of caution. This is because in the LCA:
+The 95th percentile estimate should be taken with a degree of caution. This is because:
 <ol>
-  <li>H-1B visas don't line up 1:1 with LCA filings</li>
+  <li>LCAs do not directly identify H-1B visa holders</li>
   <li>Multiple H-1Bs can be approved on one LCA</li>
   <li>LCAs are filed ~6 months in advance of the H-1B visa</li>
   <li>An LCA may not reflect any real H-1B workers if the company does not get H-1B approval or file a H-1B application (which may occur for logistical reasons also, some proposed start dates on the LCA application are months to a year before the LCA is actually approved).</li>
 </ol>
 
-The gaps between LCAs filed and H-1B visas actually held are significant. Apple filed 2,781 LCA applications for start dates in 2023, and had only 707 new H-1B visa employees in 2023, 3,115 continuing. Amazon.com (excluding AWS, Amazon Fresh, Amazon Payments, etc.) had 8,628 LCA applications and 11,313 total H-1B employees; 2,826 new employees. But without more detail, we cannot determine which of these LCA applications are underpinning several H1B workers and which LCAs are underpinning no H1B workers. The direction of the bias is unknown.
-
-The H-4 income comes from Brandon et al. (2019), and is adjusted to the 2023 value taking the growth in the mean H-1B wage from 2019-2023 provided by the USCIS. We apply the mean H-4 income to all H-1B income scenarios.
+The H-4 average income comes from Brandon et al. (2019), and is adjusted to the 2023 value taking the growth in the mean H-1B wage from 2019-2023 provided by the USCIS. We apply the mean H-4 income to all H-1B income scenarios.
 
 
 ## Revenues 

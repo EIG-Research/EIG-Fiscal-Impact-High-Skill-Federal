@@ -103,7 +103,7 @@ Income tax brackets, standard deductions, and tax credits come from the Tax Foun
 </tr>
 </table>
 
-In general, non-resident aliens are not allowed to take the standard deduction, file jointly, or file as a household head ([Link](https://www.irs.gov/individuals/international-taxpayers/nonresident-figuring-your-tax)). However, according to the substantial presence test, H-1B workers and their spouses are considered to be resident aliens by the IRS ([Link](https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test)). There are edge cases for non-US based H-4 visa holders but we ignore these. Our interpretation is corroborated by individuals in our network: Dip, head of [Improve the Dream](https://www.improvethedream.org/), and Supriya, an software developer who is married to an H-1B, and has previously been on H-4 and H-1B visas.
+In general, non-resident aliens are not allowed to take the standard deduction, file jointly, or file as a household head ([Link](https://www.irs.gov/individuals/international-taxpayers/nonresident-figuring-your-tax)). However, according to the substantial presence test, H-1B workers and their spouses are considered to be resident aliens by the IRS ([Link](https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test)). There are edge cases for non-US based H-4 visa holders but we ignore these.
 
 #### Long-term adjustment
 

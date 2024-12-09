@@ -14,8 +14,8 @@ This document outlines the data and methodology used for EIG’s H-1B federal fi
  5. Department of Labor Prevailing Wage Test data for Q1-4 2023, for the 95th percentile H-1B income estimate [Link](https://www.dol.gov/agencies/eta/foreign-labor/wages)
  6. Brandon, Ike, and M. Kevin McGee "Repealing H-4 Visa Work Authorization: A Cost-Benefit Analysis." Available at SSRN 3349786 (2019) [Link](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3349786) for H-4 incomes in 2019
  7. Tax Foundation 2023 Tax Brackets [Link](https://taxfoundation.org/data/all/federal/2023-tax-brackets/) for income tax estimates
- 8. Consumer Expenditure Survey from the BLS Public Use Microdata (PUMD) [Link](https://www.bls.gov/cex/pumd.htm) to estimate excise taxes
- 9. USCIS I-765 Work Authorization Reports [Link](https://www.uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data) for working spouse probabilities
+ 8. Consumer Expenditure Survey from the BLS Public Use Microdata (PUMD) [Link](https://www.bls.gov/cex/pumd.htm) for excise tax distributions
+ 9. USCIS I-765 Work Authorization Reports [Link](https://www.uscis.gov/tools/reports-and-studies/immigration-and-citizenship-data) for probability that H-4 spouses work
  10. Stock of H-1Bs [Link](https://www.uscis.gov/sites/default/files/document/reports/USCIS%20H-1B%20Authorized%20to%20Work%20Report.pdf)
  11. CBO Economic Projections, June 2024 [Link](https://www.cbo.gov/data/budget-economic-data)
  12. CBO Tax Parameters, June 2024 [Link](https://www.cbo.gov/data/budget-economic-data)

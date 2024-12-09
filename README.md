@@ -25,7 +25,7 @@ This document outlines the data and methodology used for EIG’s H-1B federal fi
 
 ## Scenario Probabilities
 
-Assuming that there are no single-parent households for simplicity, and that children are distributed equally among working and non-working H-1B spouses, we construct five scenarios to estimate household-level impacts of issuing a single H-1B visa. We estimate each scenario separately for the mean, median, and 95th percentile H-1B earner.
+Assuming that there are no single-parent households for simplicity, and that children are distributed equally among working and non-working H-1B spouses, we construct five scenarios to estimate household-level impacts of issuing a single H-1B visa. We estimate each scenario separately for the mean, median, and 95th percentile wage for H-1B workers in 2023.
 
   &nbsp;&nbsp;&nbsp;&nbsp;<b>Scenario 1:</b> unmarried H-1B worker, no children
   

@@ -128,12 +128,12 @@ The OASDI/Social Security payroll tax has a cap on taxable income for which the 
 
 ## Excise Taxes
 
-We distribute excise taxes to H-1B workers based on excise-tax eligible expenditure reported by the BLS's Consumer Expenditure Survey, and the Bureau of Economic Analysis's estimate of federal excise tax receipts in 2023. We apportion excise taxes based on household-level spending on alcohol, gasoline, telephone, and airline tickets; which are the categories of expenditure in the CES subject to excise taxes. We expect H-1B workers and working H-4 spouses to fall within the 4th and 5th salary quintiles, so we take 40% of total excise revenue and apportion to each demographic secnario based on household size (single household member, spouse, and spouse + child.)
+We distribute excise taxes to H-1B workers based on excise-tax eligible expenditure reported by the BLS's Consumer Expenditure Survey, and the Bureau of Economic Analysis's estimate of federal excise tax receipts in 2023. We apportion excise taxes based on household-level spending on alcohol, gasoline, telephone, and airline tickets; which are the categories of expenditure in the CES subject to excise taxes. We expect H-1B workers and working H-4 spouses to fall within the 4th and 5th salary quintiles, so we take 40% of total excise revenue and apportion to each demographic scenario based on household size (single household member, spouse, and spouse + child.)
 
 
 #### Long-term adjustment
 
-Excise tax rates are typically not adjusted for inflation. For example, the gas tax has been held at 18.4 cents per gallon of gasoline since 1993, and the alcohol taxes are in terms of cents per ounce, as are most air transportation excise taxes. Although consumtion on excise-tax eligible products (such as alcohol, telephone services, airline travel), will likely increase in both real and nominal terms, we assume no growth in excise taxes over the 10-year time frame as a conservative measure.
+Excise tax rates are typically not adjusted for inflation. For example, the gas tax has been held at 18.4 cents per gallon of gasoline since 1993, and the alcohol taxes are in terms of cents per ounce, as are most air transportation excise taxes. Although consumption on excise-tax eligible products (such as alcohol, telephone services, airline travel), will likely increase in both real and nominal terms, we assume no growth in excise taxes over the 10-year time frame as a conservative measure.
 
 
 ## Customs Duties

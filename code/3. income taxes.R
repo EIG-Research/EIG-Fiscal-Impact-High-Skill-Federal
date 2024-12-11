@@ -16,10 +16,6 @@
 # Substantial Presence Test: https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test
 # Non-residency Rules: https://www.irs.gov/individuals/international-taxpayers/nonresident-figuring-your-tax
 
-# Interpretation confirmed by Dip, head of Improve the Dream (https://www.improvethedream.org/) 
-# and Supriya, a software developer in our network who is married; 
-# and was on both the H-4 and H-1B visas previously.
-
 
 # remove dependencies
 rm(list = ls())

@@ -62,7 +62,7 @@ The H-4 average income comes from Brandon et al. (2019), and is adjusted to the 
 
 ### Income Taxes
 
-Income tax brackets, standard deductions, and tax credits come from the Tax Foundation’s 2023 tax brackets. Income taxes are applied for each scenario using to the following formulas:
+Income tax brackets, standard deductions, and tax credits come from the Tax Foundation’s 2023 tax brackets. Income taxes are applied for each scenario using the following formulas:
 
 <table>
 <tr>
@@ -107,7 +107,7 @@ In general, non-resident aliens are not allowed to take the standard deduction, 
 
 #### Long-term adjustment
 
-We assume no significant change to the tax code between 2023-2032. Bracket cutoffs are adjusted using the CBO’s CPI-U projection.
+We assume no significant change to the tax code between 2023-2032. Bracket cutoffs are adjusted using the CBO’s C-CPI-U projection.
 
 ### Payroll Taxes
 
@@ -128,7 +128,7 @@ The OASDI/Social Security payroll tax has a cap on taxable income for which the 
 
 ## Excise Taxes
 
-We distribute excise taxes to H-1B workers based on excise-tax eligible expenditure reported by the BLS's Consumer Expenditure Survey, and the Bureau of Economic Analysis's estimate of federal excise tax receipts in 2023. We apportion excise taxes based on household-level spending on alcohol, gasoline, telephone, and airline tickets; which are the categories of expenditure in the CES subject to excise taxes. We expect H-1B workers and working H-4 spouses to fall within the 4th and 5th salary quintiles, so we take 40% of total excise revenue and apportion to each demographic scenario based on household size (single household member, spouse, and spouse + child.)
+We distribute excise taxes to H-1B workers based on excise-tax eligible expenditure reported by the BLS's Consumer Expenditure Survey, and the Bureau of Economic Analysis's estimate of federal excise tax receipts in 2023. We apportion excise taxes based on household-level spending on alcohol, gasoline, telephone, and airline tickets; which are the categories of expenditure in the CES subject to excise taxes. We expect H-1B workers and working H-4 spouses to fall within the 4th and 5th salary quintiles. assuming that each income-quintile contributes the same in excise taxes (under-estimating the higher earners' portion), we take 40% of total excise revenue and apportion to each demographic scenario based on household size (single household member, spouse, and spouse + child.)
 
 
 #### Long-term adjustment
@@ -146,7 +146,7 @@ The growth in customs duties is likely bounded by population growth and real inc
 
 ## Expenditures
 
-Only non-fixed cost federal outlays, and those that are incurred by H-1B workers, are applied. These can be found in <i>Methodology/expenditures methodology.xlsx.</i> The methodology differs depending on household composition. Per-capita transformations are made using the Census’s 2023 U.S. population estimate. The methodology differs depending on household composition; costs are assumed to double when a H-1B worker is married. Federal elementary and secondary education expenditures are applied only to the scenarios in which an H-1B worker has children; and in those cases are adjusted by the total number of children in the household.
+Only non-fixed cost federal outlays, and those that are incurred by H-1B workers, are applied. These can be found in <i>Methodology/expenditures methodology.xlsx.</i> The methodology differs depending on household composition. Per-capita transformations are made using the Census’s 2023 U.S. population estimate. The methodology differs depending on household composition; costs are assumed to double when a H-1B worker is married. Federal elementary and secondary education expenditures are applied only to the scenarios in which an H-1B worker has children; and in those cases are adjusted by the average number of children among H-1Bs.
 
 #### Long-term adjustment
 

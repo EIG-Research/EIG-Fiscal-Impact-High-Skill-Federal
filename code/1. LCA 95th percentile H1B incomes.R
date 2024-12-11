@@ -151,15 +151,9 @@ count(LCA2023_all)  - 386318
 # use USCIS estimates for the federal model mean and median
 # use LCA for 95th percentile and 99th percentile
 
-quantile(LCA2023_all$ADJUSTED_PAY, 
-         c(0.25, 0.5, 0.75, 0.90, 0.95, 0.99), na.rm=TRUE)
+income_95th_h1b = quantile(LCA2023_all$ADJUSTED_PAY, 
+                           c(0.95), na.rm=TRUE)
 
-h1b_95th = quantile(LCA2023_all$ADJUSTED_PAY, 
-                    c(0.25, 0.5, 0.75, 0.90, 0.95, 0.99), na.rm=TRUE)[5]
-
-
-openxlsx::write.xlsx(h1b_95th, paste(output_path, "h1b_income_95th.xlsx", sep="/"))
-
-# 95th - $217,625
-# 99th - $300,000
+setwd(output_path)
+save(income_95th_h1b, file = "h1b_income_95th.RData") 
 

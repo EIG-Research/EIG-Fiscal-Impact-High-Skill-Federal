@@ -24,11 +24,7 @@ output_path = file.path(project_path, "Output")
 ###########################################
 # read in scenarios panel (+ income taxes)
 
-scenarios_panel = read_excel(
-  paste(output_path, 
-        "h1b_scenarios_panel_inc_tax.xlsx", 
-        sep="/"))
-
+load(file.path(output_path, "h1b_scenarios_panel_inc_tax.RData"))
 
 ########################
 # read in payroll taxes
@@ -117,4 +113,6 @@ payroll_taxes = payroll_taxes %>%
 
 #################
 # export dataset
-write.xlsx(payroll_taxes, paste(output_path, "h1b_scenarios_panel_inc_payroll_tax.xlsx", sep="/"))   
+setwd(output_path)
+
+save(payroll_taxes, file = "h1b_scenarios_panel_inc_payroll_tax.RData")

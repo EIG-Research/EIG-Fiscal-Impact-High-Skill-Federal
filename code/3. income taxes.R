@@ -34,11 +34,7 @@ output_path = file.path(project_path, "Output")
 
 #########################
 # read in scenarios panel
-scenarios_panel = read_excel(
-  paste(output_path, 
-        "h1b_scenarios_panel.xlsx", 
-        sep="/"))
-
+load(file.path(output_path, "h1b_scenarios_panel.RData"))
 
 ###############################################################
 # read in chained CPI-U to grow our tax bracket cutoffs from CBO
@@ -125,7 +121,7 @@ rm(brackets, deductions)
 #########################
 # construct income taxes
 
-# children | married
+# Pr(child | married); estimated in 8. h1b demography.do
 nchild = 1.48
 
   # 1. apply standard deduction
@@ -163,5 +159,7 @@ nchild = 1.48
     # merge in with the scenarios panel and export
 scenarios_panel = left_join(scenarios_panel, income_taxes, by = c("Year", "scenario", "income_type"))    
 
+setwd(output_path)
+save(scenarios_panel, file = "h1b_scenarios_panel_inc_tax.RData")
 
-write.xlsx(scenarios_panel, paste(output_path, "h1b_scenarios_panel_inc_tax.xlsx", sep="/"))      
+

@@ -355,6 +355,7 @@ excise_taxes_applied = annual_excise_expend %>% filter(cu_code == 1) %>%
   # based on distribution of expenditure across groups,
   # with equal expenditure across HH members (an issue with larger families with one income earner)
   
+  # BEA expenditures are reported in billions
   mutate(excise_revenue = BEA_2023_excise_applied * 1000000000 * group_wt / pop) %>%
   
   mutate(excise_rate = excise_revenue/mean_quintile_salary)
@@ -369,8 +370,9 @@ single = excise_taxes_applied[excise_taxes_applied$categorization=="single filer
 joint_no_kids = excise_taxes_applied[excise_taxes_applied$categorization=="joint filer kids",]$excise_rate
 joint_kids = excise_taxes_applied[excise_taxes_applied$categorization=="joint filer no kids",]$excise_rate
 
-scenarios_panel = read_excel(
-  paste(output_path, "h1b_scenarios_panel_inc_payroll_tax.xlsx", sep="/")) %>%
+load(file.path(output_path, "h1b_scenarios_panel_inc_payroll_tax.RData"))
+
+scenarios_panel = scenarios_panel %>%
   mutate(excise_taxes = case_when(
     scenario == 1 ~ (income_h1b+income_spouse)*single,
     scenario == 2 ~ (income_h1b+income_spouse)*joint_kids,
@@ -380,5 +382,7 @@ scenarios_panel = read_excel(
   ))
 
 # export dataset
-write.xlsx(scenarios_panel, paste(output_path, "h1b_scenarios_panel_inc_payroll_excise_tax.xlsx",sep="/"))
+
+setwd(output_path)
+save(scenarios_panel, file = "h1b_scenarios_panel_inc_payroll_excise_tax.RData")
 

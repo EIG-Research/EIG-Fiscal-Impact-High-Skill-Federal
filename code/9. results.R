@@ -22,10 +22,9 @@ output_path = file.path(project_path, "Output")
 
 
 # read in full panel
-scenarios_panel = read_excel(paste(
-  output_path, 
-  "scenarios_taxes_expenditures_combined.xlsx",
-  sep="/")) %>%
+load(file.path(output_path, "scenarios_taxes_expenditures_combined.RData"))
+
+scenarios_panel = scenarios_panel %>%
   
   mutate(taxes_individual = income_tax + total_payroll_taxes_employee + excise_taxes + customs_duties,
          taxes_employer = total_payroll_taxes_employer,

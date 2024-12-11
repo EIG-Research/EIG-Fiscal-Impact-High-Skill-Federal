@@ -57,6 +57,8 @@ expenditures_methods= read_excel(
   select(-c(contains("Scenario"))) %>%
   
   # adjust elementary education spending to the # of children in the household
+  # 1.48 is the number of estimated children per household, conditional on being married.
+  # see 8. h1b demography.do
   
   mutate(`2` = ifelse(`Function and Subfunction`=="501 Elementary, secondary, and vocational education",
                       `2`*1.48, `2`),
@@ -146,11 +148,12 @@ expenditures_annual = right_join(expenditures, growth_rates, by = "Function and 
 
 
 # merge into full dataset, then export
-scenarios_panel = read_excel(paste(
-  output_path, 
-  "h1b_scenarios_panel_inc_payroll_excise_customs_tax.xlsx",
-   sep="/")) %>%
+setwd(output_path)
+
+load("h1b_scenarios_panel_inc_payroll_excise_customs_tax.RData")
+
+scenarios_panel = scenarios_panel %>%
   left_join(expenditures_annual, by = c("Year", "scenario"))
 
-
-write.xlsx(scenarios_panel, paste(output_path, "scenarios_taxes_expenditures_combined.xlsx",sep="/"))
+# save
+save(scenarios_panel, "scenarios_taxes_expenditures_combined.RData")

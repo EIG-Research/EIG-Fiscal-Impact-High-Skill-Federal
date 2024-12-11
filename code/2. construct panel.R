@@ -43,8 +43,8 @@ income_mean_h1b = 130000
 
   # see LCA 95th percentile H1B incomes.R
 
-income_95th_h1b = as.numeric(names(read_excel(paste(output_path,
-                                   "h1b_income_95th.xlsx", sep="/"))))
+load(file.path(output_path, "h1b_income_95th.RData"))
+
 
   # spouse incomes
     # 2019 estimate from Brannon, Ike, and M. Kevin McGee. "Repealing H-4 Visa Work Authorization: A Cost-Benefit Analysis." Available at SSRN 3349786 (2019)
@@ -123,4 +123,4 @@ scenarios_panel = scenarios %>%
 
 ##############
 # save. output
-write.xlsx(scenarios_panel, paste(output_path, "h1b_scenarios_panel.xlsx", sep="/"))
+save(scenarios_panel, file = "h1b_scenarios_panel.RData")

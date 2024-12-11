@@ -91,7 +91,7 @@ write.xlsx(scenarios_panel_all_years_collapsed,
 annual_100k = 100000
 annual_500k = 500000
 
-retention_rate_green_card = 0.45
+retention_rate_green_card = 0.44
 
 cumulative_estimate = scenarios_panel_all_years_collapsed %>%
   ungroup() %>%

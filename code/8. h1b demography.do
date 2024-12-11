@@ -1,5 +1,6 @@
 
-cd "/Users/adamozimek/Documents/Projects/2023 - High Skilled Tax Impact/h1b"
+cd "user path/data/ACS"
+
 
 *TWO DIGIT OCCSOC CODES 
 import delimited "occsoc2cats.csv", clear 
@@ -7,7 +8,7 @@ sort occsoc2
 save "occsoc2cats.dta", replace 
 
 *ALL COUNTRIES
-use "usa_00132.dta", clear
+use "usa_00039.dta", clear
 keep if empstat== 1 
 keep if citizen == 3
 keep if yrsusa1 < 7
@@ -36,7 +37,7 @@ save "ACS_demog_all.dta", replace
 
 
 *JUST INDIA AND CHINA
-use "usa_00132.dta", clear
+use "usa_00039.dta", clear
 keep if empstat== 1 
 keep if citizen == 3
 keep if yrsusa1 < 7
@@ -55,6 +56,8 @@ drop _merge
 sort occsoc2
 save "ACS_demog_v2.dta", replace 
 
+
+cd "user path/data/DOL Prevailing Wage Test"
 
 forvalues x = 1(1)4 {
 import delimited "LCA_Disclosure_Data_FY2023_Q`x'.csv", clear 
@@ -94,11 +97,11 @@ g count = 1
 collapse (sum) count (mean) new_pay, by(worksite_state)
 sort worksite_state
 rename worksite_state state_abbr
-
+/*
 statastates, abbrev(state_abbr)
 drop if _merge ==1
 drop _merge 
-sort state_name 
+sort state_name */
 save "state_median_h1b_pay.dta", replace 
 
 
@@ -150,13 +153,15 @@ replace new_pay = 2080 * avg_pay if wage_unit_of_pay == "Hour"
 replace new_pay = 26 * avg_pay if wage_unit_of_pay == "Bi-Weekly"
 
 
-
 g count = 1
 replace soc_code = subinstr(soc_code ,"-","",.)
 g occsoc2 = substr(soc_code,1,2)
 destring occsoc2, replace 
 collapse(sum) count (median) new_pay, by(occsoc2)
 sort occsoc2
+
+cd "USER PATH/data/ACS"
+
 merge 1:1 occsoc2 using "ACS_demog_v2.dta"
 *ALL MERGED EXCEPT FOR 5 H1b HOLDERS IN WEIRD SOC CODES 
 keep if _merge==3
@@ -166,36 +171,3 @@ su nchild [fweight = count], detail
 su age [fweight = count], detail 
 su male [fweight = count], detail 
 su married [fweight = count], detail
-
-
-
-*****  THIS DATA HERE THAT IS PRODUCES ABOVE IS WHAT IS USED IN THRE REPORT AS 
-*****  OF JULY 2024
-
-
-
-*GOING BACKWARDS BY BRINGING IN OCCUPATION MIX OF LCA DATA
-
-
-*ALL COUNTRIES
-use "usa_00132.dta", clear
-keep if empstat== 1 
-keep if citizen == 3
-keep if yrsusa1 < 7
-keep if educd>=101
-g count = 1
-g occsoc2 = substr(occsoc,1,2)
-destring occsoc2, replace 
-g male = sex == 1
-g china = (bpl == 500)
-g india = (bpl == 521)
-replace perwt = 4.66* perwt if india
-replace perwt = 3.05*perwt if china
-
-sort occsoc2
-merge m:1 occsoc2 using  "LCA_data_by_occ.dta",
-*54 ACS individuals out of 69k didn't merge. They are all in military occupations
-*5 individuals in 3 SOC codes in the LCA data don't merge. the 2-digit soc codes don't google
-
-
-

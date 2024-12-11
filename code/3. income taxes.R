@@ -45,7 +45,7 @@ scenarios_panel = read_excel(
 
 
 ###############################################################
-# read in chained CPI to grow our tax bracket cutoffs from CBO
+# read in chained CPI-U to grow our tax bracket cutoffs from CBO
 chained_cpiu = read_excel(
   paste(data_path,
         "CBO",
@@ -54,7 +54,7 @@ chained_cpiu = read_excel(
   sheet = "2. Calendar Year",
   skip = 6
 ) %>%
-  filter(...2 == "Consumer Price Index, All Urban Consumers (CPI-U)") %>%
+  filter(...2 == "Chained CPI-U") %>%
   select(-c(...1, ...2, ...3, Units))
 
 chained_cpiu = chained_cpiu %>%

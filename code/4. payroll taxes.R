@@ -13,6 +13,7 @@ rm(list = ls())
 library(dplyr)
 library(readxl)
 library(openxlsx)
+library(tidyr)
 
 # set project directories
 user_path = "/Users/sarah/Documents/GitHub"
@@ -99,8 +100,8 @@ payroll_taxes = payroll_taxes %>%
          HI_employer_tax_h1b =  income_h1b*HI_employer,
          HI_employer_tax_spouse = income_spouse*HI_employer,
          
-         FUTA_employer_tax_h1b = income_h1b*FUTA_employer,
-         FUTA_employer_tax_spouse = income_spouse*FUTA_employer,
+         FUTA_employer_tax_h1b = 7000*FUTA_employer,
+         FUTA_employer_tax_spouse = 7000*FUTA_employer,
   
   # construct summary variables
          total_payroll_taxes_employee = OASDI_employee_tax_h1b + OASDI_employee_tax_spouse + HI_employee_tax_h1b + HI_employee_tax_spouse,

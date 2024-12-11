@@ -146,7 +146,7 @@ The growth in customs duties is likely bounded by population growth and real inc
 
 ## Expenditures
 
-Only non-fixed cost federal outlays, and those that are incurred by H-1B workers, are applied. These can be found in <i>Methodology/expenditures methodology.xlsx.</i> The methodology differs depending on household composition. Per-capita transformations are made using the Census’s 2023 U.S. population estimate. The methodology differs depending on household composition; costs are assumed to double when a H-1B worker is married. Federal elementary and secondary education expenditures are applied only to the scenarios in which an H-1B worker has children; and in those cases are adjusted by the average number of children among H-1Bs.
+Only non-fixed cost federal outlays, and those that are incurred by H-1B workers, are applied. These can be found in <i>Methodology/expenditures methodology.xlsx.</i> The methodology differs depending on household composition. Per-capita transformations are made using the Census’s 2023 U.S. population estimate. The methodology differs depending on household composition; costs are assumed to double when a H-1B worker is married. Federal elementary and secondary education expenditures are applied only to the scenarios in which an H-1B worker has children; and those cases are adjusted by the average number of children across H-1Bs conditional on the H-1B worker having children.
 
 #### Long-term adjustment
 

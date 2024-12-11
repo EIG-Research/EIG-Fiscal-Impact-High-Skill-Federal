@@ -180,4 +180,4 @@ So we have 39% married with kids, and 21% (60% - 39% = 21%) married without kids
 
 The average number of kids per H-1B worker is 0.58,
  so that means E(Kids | having kids ) = E(kids) / p(having kids) = 1.49 kids. 
-*/
+* 

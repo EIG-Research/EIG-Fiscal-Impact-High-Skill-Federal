@@ -15,8 +15,8 @@ library(openxlsx)
 library(tidyr)
 
 # set project directories
-user_path = "/Users/sarah/Library/CloudStorage/GoogleDrive-sarah@eig.org/My Drive"
-project_path = file.path(user_path, "FISCAL IMPACTS FEDERAL")
+user_path = "/Users/sarah/Documents/GitHub"
+project_path = file.path(user_path, "EIG-Fiscal-Impact-High-Skill-Federal")
 methods_path = file.path(project_path, "Methodology")
 output_path = file.path(project_path, "Output")
 
@@ -73,11 +73,6 @@ scenarios_panel_all_years_collapsed = scenarios_panel %>%
             taxes_employer = sum(taxes_employer*probability),
             taxes_total = sum(taxes_total*probability))
 
-
-scenarios_panel_2023_collapsed = scenarios_panel_all_years_collapsed %>%
-  filter(Year == 2023)
-
-
 #############
 # save output
 write.xlsx(scenarios_panel_2023, 
@@ -85,11 +80,6 @@ write.xlsx(scenarios_panel_2023,
 
 write.xlsx(scenarios_panel_all_years_collapsed, 
            paste(output_path, "RESULTS_all_years_probabilistic.xlsx", sep="/"))
-
-write.xlsx(scenarios_panel_2023_collapsed, 
-           paste(output_path, "RESULTS_2023_probabilistic.xlsx", sep="/"))
-
-
 
 ########################################
 # estimate annual mean net tax contribution each year
@@ -154,7 +144,7 @@ cumulative_estimate %>%
             `total impact_500k`= sum(total_impact_500k)) %>%
   pivot_longer(cols = c(contains("total"))) %>%
   mutate(`annual h1b inflow` = substr(name, nchar(name) - 3, nchar(name)),
-         variable = substr(name, 1, nchar(name) - 5)) %>% select(variable, annual_h1b_inflow, value) %>%
+         variable = substr(name, 1, nchar(name) - 5)) %>% select(variable, `annual h1b inflow`, value) %>%
   pivot_wider(names_from = variable,
               values_from = value)
 

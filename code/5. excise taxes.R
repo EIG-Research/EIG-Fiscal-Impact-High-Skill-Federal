@@ -49,8 +49,8 @@ library(ggplot2)
 ##################
 # set directories
 
-user_path = "/Users/sarah/Library/CloudStorage/GoogleDrive-sarah@eig.org/My Drive"
-project_path = file.path(user_path, "FISCAL IMPACTS FEDERAL")
+user_path = "/Users/sarah/Documents/GitHub"
+project_path = file.path(user_path, "EIG-Fiscal-Impact-High-Skill-Federal")
 data_path = file.path(project_path, "Data/CES/intrvw23")
 output_path = file.path(project_path, "Output")
 path_bea = file.path(project_path, "Data/BEA")
@@ -191,7 +191,7 @@ annual_excise_expend <- left_join(fmli_memi, mtbi, by = "newid") %>%
                 ~ replace(., is.na(.), 0)))
 
 # clean up
-#rm(fmli, mtbi, fmli_memi, memi)
+rm(fmli, mtbi, fmli_memi, memi)
 
 
 
@@ -304,6 +304,7 @@ BEA_2023_excise_totals = readxl::read_excel(paste(path_bea, "Table.xlsx", sep="/
 BEA_2023_excise_totals = BEA_2023_excise_totals$`2023`[1]
 
 # apply 40% of total to quintiles 4 & 5
+# assuming equal contribution across quintiles. underestimate.
 BEA_2023_excise_applied = BEA_2023_excise_totals*0.40
 
 #####################################
@@ -372,7 +373,7 @@ joint_kids = excise_taxes_applied[excise_taxes_applied$categorization=="joint fi
 
 load(file.path(output_path, "h1b_scenarios_panel_inc_payroll_tax.RData"))
 
-scenarios_panel = scenarios_panel %>%
+scenarios_panel = payroll_taxes %>%
   mutate(excise_taxes = case_when(
     scenario == 1 ~ (income_h1b+income_spouse)*single,
     scenario == 2 ~ (income_h1b+income_spouse)*joint_kids,

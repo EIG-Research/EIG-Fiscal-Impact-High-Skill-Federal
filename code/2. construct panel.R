@@ -16,8 +16,8 @@ library(readxl)
 library(openxlsx)
 
 # set project directories
-user_path = "/Users/sarah/Library/CloudStorage/GoogleDrive-sarah@eig.org/My Drive"
-project_path = file.path(user_path, "FISCAL IMPACTS FEDERAL")
+user_path = "/Users/sarah/Documents/GitHub"
+project_path = file.path(user_path, "EIG-Fiscal-Impact-High-Skill-Federal")
 data_path = file.path(project_path, "Data")
 output_path = file.path(project_path, "Output")
 

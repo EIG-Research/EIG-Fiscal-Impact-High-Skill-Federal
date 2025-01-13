@@ -133,6 +133,17 @@ cumulative_estimate = scenarios_panel_all_years_collapsed %>%
     total_impact_500k = fiscal_impact*adjusted_h1bs_500k)
 
 
+non_collapsed_estimate = 
+  cumulative_estimate %>%
+  select(total_revs_100k,
+         total_expend_100k,
+         total_impact_100k,
+         total_revs_500k,
+         total_expend_500k,
+         total_impact_500k)
+  
+
+
 collapsed_estimate = 
 cumulative_estimate %>%
   summarise(`total revenues_100k` = sum(total_revs_100k),
@@ -149,3 +160,6 @@ cumulative_estimate %>%
               values_from = value)
 
 write.xlsx(collapsed_estimate, paste(output_path, "cumulative impact.xlsx", sep="/"))
+
+
+write.xlsx(non_collapsed_estimate, paste(output_path, "annual impact raising cap.xlsx", sep="/"))

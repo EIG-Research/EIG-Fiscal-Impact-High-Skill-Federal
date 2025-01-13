@@ -135,7 +135,8 @@ cumulative_estimate = scenarios_panel_all_years_collapsed %>%
 
 non_collapsed_estimate = 
   cumulative_estimate %>%
-  select(total_revs_100k,
+  select(Year, 
+         total_revs_100k,
          total_expend_100k,
          total_impact_100k,
          total_revs_500k,
